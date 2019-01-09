@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+int row,col,num;
+int map[1000][1000];
+
+void mapping(int row,int col);
+
+int main(void){
+    // Your code here!
+    int n,m,i,j;
+    //地図の要素の個数の入力
+    scanf("%d %d",&n,&m);
+    //地図の海と島をマップ配列に投入
+    for(i = 0;i < m;i++) {
+        for(j = 0;j < n;j++) {
+            scanf("%d",&map[i][j]);
+        }
+    }
+    //上書き用島ナンバーの設定
+    num = 2;
+    //島ナンバーが1の島を探す
+    for(i = 0;i < m;i++) {
+        for(j = 0;j < n;j++) {
+            if(map[i][j] == 1) {
+                mapping(i,j);
+                num++;
+            }
+        }
+    }
+    printf("%d",num - 2);
+    //デバッグ用（マップの中身）
+    /*for(i = 0;i < m;i++) {
+        for(j = 0;j < n;j++) {
+            printf("%2d ",map[i][j]);
+        }
+        printf("\n");
+    }*/
+    return 0;
+}
+//再帰を利用して隣り合っている島の数値を変更する
+void mapping(int row,int col) {
+    int i,j;
+    map[row][col] = num;
+    for(i = -1;i <= 1;i++) {
+        for(j = -1;j <= 1;j++) {
+            if(i == 0 || j == 0){
+                if(map[row + i][col + j] == 1) {
+                    mapping(row + i,col + j);
+                }
+            }
+        }
+    }
+}
