@@ -1,0 +1,36 @@
+第一案
+--------------------------------------------------------------
+#include <stdio.h>
+#include <string.h>
+int main(void){
+    // Your code here!
+    int i,j,n,m,len;
+    scanf("%d %d",&n,&m);
+    char tango[10000][100];
+    char search[10000][100];
+    int price[10000];
+    
+    // 市場に出回っている単語N個と価格をテーブルに投入する
+    for(i = 0;i < n;i++){
+        scanf("%s %d",tango[i],&price[i]);
+    }
+    // 探す文字列M個をテーブルに投入する
+    for(i = 0;i < m;i++) {
+        scanf("%s",search[i]);
+    }
+    // 探す
+    for(i = 0;i < m;i++){
+        int k = 0;
+        len = strlen(search[i]);
+        for(j = 0;j < n;j++){
+            if(strncmp(tango[j],search[i],len) == 0){
+                k = k + price[j];
+            }
+        }
+        printf("%d\n",k);
+    }
+    
+    return 0;
+}
+--------------------------------------------------------------
+境界データまではクリアしたが大規模データで出力が間違っていたのでやり直し
