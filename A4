@@ -1,0 +1,29 @@
+第一案
+-------------------------------------------
+#include <stdio.h>
+int main(void){
+    int cnt = 0,i,j,n,m,num;
+    int data[100000];
+    scanf("%d",&n);
+    for(i = 0;i < n;i++){
+        scanf("%d",&data[i]);
+    }
+    for(i = 0;i < n;i++){
+        m = data[i];
+        for(j = i;j < n;j++){
+            if(m > data[j]){
+                m = data[j];
+                num = j;
+            }
+        }
+        if(data[i] > m){
+            data[num] = data[i];
+            data[i] = m;
+            cnt++;
+        }
+    }
+    printf("%d",cnt);
+    return 0;
+}
+-----------------------------------------
+問題なくクリア
