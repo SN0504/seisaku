@@ -1,0 +1,30 @@
+第一案
+-------------------------------------------------------
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+ 
+int main(void) {
+    char str1[1500000];
+    char str2[1500000];
+    char str3[1500000];
+    char c = '0';
+    int n,i,f,p1,p2;
+    scanf("%d",&n);
+    for(i = 0;i < n;i++){
+        if(i == 0){
+            str1[0] = '0';
+        } else {
+            p1 = pow(2,i);
+            strncpy(str2,str1,p1 * 2);
+            p2 = p1 / 2;
+            str2[p2 - 1] = '1';
+            sprintf(str3,"%s%c%s",str1,c,str2);
+            strncpy(str1,str3,p1 * 2);
+        }
+    }
+    printf("%s",str1);
+    return 0;
+}
+-----------------------------------------------------
+問題なくクリア
