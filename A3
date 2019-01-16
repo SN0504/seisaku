@@ -29,7 +29,7 @@ int main(void) {
             p2 = p1 / 2;
             str2[p2 - 1] = '1'; //折り目の中央を1に書き換える
             sprintf(str3,"%s%c%s",str1,c,str2); //str3にn-1の折り目、0、n-1の折り目の中央を1にしたものを記憶させる
-            strncpy(str1,str3,p1 * 2);str1をstr3に書き換える
+            strncpy(str1,str3,p1 * 2); //str1をstr3に書き換える
         }
     }
     printf("%s",str1);
