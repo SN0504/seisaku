@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <string.h>
 int main(void){
-    // Your code here!
     int i,j,n,m,len;
     scanf("%d %d",&n,&m);
     char tango[10000][100];
@@ -12,18 +11,20 @@ int main(void){
     
     // 市場に出回っている単語N個と価格をテーブルに投入する
     for(i = 0;i < n;i++){
-        scanf("%s %d",tango[i],&price[i]);
+        scanf("%s %d",tango[i],&price[i]); //この方法でtango[i][0]～tango[i][n]の二次元配列に正しく格納されるかがよくわかっていないけれどおそらく
+                                             問題は無いと思われる。原理は&をつけていないためtango[i][0]を初期のアドレスとして参照している？
     }
     // 探す文字列M個をテーブルに投入する
     for(i = 0;i < m;i++) {
-        scanf("%s",search[i]);
+        scanf("%s",search[i]); //tango配列と同じく正しく格納できているかはわからない
     }
     // 探す
     for(i = 0;i < m;i++){
-        int k = 0;
-        len = strlen(search[i]);
+        int k = 0; //合計価格を入れる場所
+        len = strlen(search[i]); //search[i][0]～search[i][n]までの文字数を記憶する
         for(j = 0;j < n;j++){
-            if(strncmp(tango[j],search[i],len) == 0){
+            if(strncmp(tango[j],search[i],len) == 0){ //tango[j][0]～tango[j][len]の文字とsearch[i][0]～search[i][len]の文字が一致していたら
+                                                        金額を加算させる
                 k = k + price[j];
             }
         }
@@ -33,4 +34,4 @@ int main(void){
     return 0;
 }
 --------------------------------------------------------------
-境界データまではクリアしたが大規模データで出力が間違っていたのでやり直し
+境界データまではクリアしたが大規模データで出力が間違っている。メモリ的な問題？
