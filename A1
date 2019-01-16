@@ -10,7 +10,7 @@ int main(void){
     int pa = 0; //パーを出した回数
     char ary[1000];
     scanf("%d %d",&m,&n);
-    scanf("%s",ary);
+    scanf("%s",ary); //文字列を配列にまとめて入れるときは直接先頭のアドレスを指定してあげればよいため&や[]をつける必要はない
     for(i = 0;i < m;i++) {
         if(ary[i] == 'G'){
             sum = sum + 5;
