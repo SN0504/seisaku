@@ -1,4 +1,5 @@
 第一案
+単純に全ての数字を足していけばいいのではないか？
 -------------------------------------------------------------
 #include <stdio.h>
 int main(void){
@@ -28,37 +29,36 @@ int main(void){
 
 
 第二案
+それぞれの数字を7で割ったあまりを足したものが7で割れれば7の倍数であるので最初に7で割ることにした
 -----------------------------------------------------------------------------
 #include <stdio.h>
 int main(void){
-    // 自分の得意な言語で
-    // Let's チャレンジ！！
-
     int n,i,j;
-    unsigned long k;
+    unsigned long k; //要求されるメモリが2^32であるためできるだけ多く確保しておく
     scanf("%d",&n);
-    int ary[7] = {};
+    int ary[7] = {}; //直接代入するわけではないので配列は初期化しておかないと正しく計算できない
     for(i = 0;i < n ;i++) {
-        scanf("%lu",&k);
+        scanf("%lu",&k); //kはunsigned long型なので%luを使う
         j = k % 7;
         ary[j] = ary[j] + 1;
     }
+    //答えの数値もどれだけの桁になるかわからないためできるだけ多く確保しておく
     unsigned long m;
     unsigned long s = 0;
-    for(i = 0;i < 7;i++) {
-        for(j = i;j < 7;j++) {
-            for(k = j;k < 7;k++) {
+    for(i = 0;i < 7;i++) { //iは0から
+        for(j = i;j < 7;j++) { //jはiと同じ数字から
+            for(k = j;k < 7;k++) { //重複する組み合わせを防ぐためkはjと同じ数字から
                 if((i + j + k) % 7 == 0) {
-                    if(i == j && i == k && j == k){
+                    if(i == j && i == k && j == k){ //もしiとjとkが同じならば答えはi'C3であるためi'*i'-1*i'-2/1*2*3で求められる
                         m = ary[i] * (ary[j] - 1) * (ary[k] - 2) / 6;
                         s = s + m;
-                    } else if(i == j){
+                    } else if(i == j){ //もしiとjが同じならば答えはi'C2*k'であるため(i'*i'-1)*k'/1*2で求められる
                         m = ary[i] * (ary[j] - 1) * ary[k] / 2;
                         s = s + m;
-                    } else if(j == k){
+                    } else if(j == k){ //上に同じ
                         m = ary[i] * ary[j] * (ary[k] - 1) / 2;
                         s = s + m;
-                    } else {
+                    } else { //余りが全て違うのであればi'*j'*k'でよい
                         m = ary[i] * ary[j] * ary[k];
                         s = s + m;
                     }
